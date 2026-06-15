@@ -2,22 +2,23 @@
 
 ## Purpose
 
-Prepare a clean Ubuntu server by installing the basic utilities required for GREATER Installer development, testing, troubleshooting, and source code management.
+Prepare a clean Ubuntu server by installing the basic utilities required for GREATER Installer development, testing, troubleshooting, source code management, and future deployment activities.
 
-This step establishes a standard development environment that will be used throughout the implementation of the GREATER Installer.
+This step establishes a standard development environment that can be reproduced on any Ubuntu server.
 
 ---
 
 ## Why This Step Is Required
 
-A fresh Ubuntu installation does not always include the utilities required during installer development.
+A fresh Ubuntu installation may not include several utilities required during installer development and validation.
 
 Installing these tools ensures that:
 
 * Development activities are reproducible.
-* Documentation commands work consistently.
+* Documentation examples work correctly.
 * Source code can be downloaded and managed.
-* Troubleshooting information can be collected.
+* System information can be collected.
+* Troubleshooting activities can be performed.
 * Future installer modules can execute correctly.
 
 ---
@@ -32,7 +33,7 @@ None.
 
 None.
 
-The step only installs required Ubuntu packages.
+This step only installs required Ubuntu packages.
 
 ---
 
@@ -99,17 +100,34 @@ zip -v
 htop --version
 ```
 
-### Create GREATER Development Workspace
+---
+
+## Optional Development Workspace
+
+Developers may create a dedicated workspace for development activities.
+
+The workspace name and location are entirely user-defined.
+
+Example:
 
 ```bash
-cd ~
+mkdir -p my-workspace
 
-mkdir -p greaterproject
-
-cd greaterproject
+cd my-workspace
 
 pwd
 ```
+
+Possible locations:
+
+```text
+/home/admin/my-workspace
+/home/user/installer
+/opt/greater
+/srv/greater
+```
+
+The GREATER Installer does not require any specific workspace name.
 
 ---
 
@@ -117,29 +135,7 @@ pwd
 
 All required packages should install successfully.
 
-The following directory should exist:
-
-```text
-/home/greaterbk/greaterproject
-```
-
-Verification command:
-
-```bash
-pwd
-```
-
-Expected output:
-
-```text
-/home/greaterbk/greaterproject
-```
-
----
-
-## Validation Procedure
-
-Verify installed packages:
+Verification examples:
 
 ```bash
 git --version
@@ -149,18 +145,64 @@ curl --version
 tree --version
 ```
 
-Verify workspace:
+Example output:
+
+```text
+git version 2.x.x
+
+curl 8.x.x
+
+tree v2.x.x
+```
+
+If an optional workspace was created:
 
 ```bash
-cd ~/greaterproject
-
 pwd
+```
+
+Expected output:
+
+```text
+<user-selected-working-directory>
+```
+
+Example:
+
+```text
+/home/admin/my-workspace
+```
+
+---
+
+## Validation Procedure
+
+Verify installed utilities:
+
+```bash
+git --version
+
+curl --version
+
+tree --version
+```
+
+Verify package installation:
+
+```bash
+which git
+
+which curl
+
+which tree
 ```
 
 Expected:
 
 ```text
-/home/greaterbk/greaterproject
+/usr/bin/git
+/usr/bin/curl
+/usr/bin/tree
 ```
 
 ---
@@ -168,8 +210,6 @@ Expected:
 ## Troubleshooting Notes
 
 ### Package Installation Interrupted
-
-Run:
 
 ```bash
 sudo dpkg --configure -a
@@ -187,8 +227,6 @@ sudo apt upgrade -y
 
 ### Package Repository Error
 
-Run:
-
 ```bash
 sudo apt clean
 
@@ -199,7 +237,7 @@ sudo apt update
 
 ### Command Not Found After Installation
 
-Check package installation:
+Verify installation:
 
 ```bash
 which git
@@ -209,10 +247,10 @@ which curl
 which tree
 ```
 
-If necessary reinstall:
+Reinstall if necessary:
 
 ```bash
-sudo apt install --reinstall tree git curl
+sudo apt install --reinstall git curl tree
 ```
 
 ---
@@ -243,17 +281,17 @@ htop \
 net-tools \
 openssh-client
 
-tree --version
-
 git --version
 
 curl --version
 
-mkdir -p ~/greaterproject
+tree --version
 
-cd ~/greaterproject
+which git
 
-pwd
+which curl
+
+which tree
 ```
 
 ---
@@ -272,21 +310,14 @@ pwd
 
 ## Conclusion
 
-The Ubuntu server has been prepared with all utilities required for GREATER Installer development.
+The Ubuntu server has been prepared with the utilities required for GREATER Installer development and validation.
 
-A dedicated development workspace named:
-
-```text
-greaterproject
-```
-
-has been created to host all installer source code, configuration files, generated artifacts, and validation activities.
-
-The server is now ready for:
+The system is now ready for:
 
 * Docker Installation
 * Docker Compose Installation
-* Git Repository Cloning
+* Source Code Management with Git
 * GREATER Installer Development
 * Module 01 – Prerequisites Development
 
+Any optional development workspace may be created according to local institutional requirements and administrator preferences.
