@@ -20,6 +20,24 @@ Each module follows:
 - Module 03 – Generate Configuration
 - Module 04 – Deploy Containers
 - Module 05 – Post Installation
+## Repository Structure
+
+```text
+greater-installer/
+├── README.md
+├── LICENSE
+├── docs/
+├── installer/
+├── docker/
+├── mysql/
+├── nginx/
+├── nodered/
+├── php/
+├── monitoring/
+├── config/
+├── logs/
+└── backup/
+
 ## Documentation Standard
 
 Every development activity must be documented using the following structure:
