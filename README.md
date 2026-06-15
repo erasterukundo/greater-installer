@@ -37,5 +37,43 @@ nodered/
 php/
 monitoring/
 config/
+
+# Documentation Structure
+
+Each module must contain:
+
+- Purpose
+- Why the module is required
+- Input files
+- Output files
+- Commands used
+- Complete source code
+- Expected results
+- Validation procedure
+- Troubleshooting notes
+- Final status
+
+# Step 0 – Clean Server Validation
+
+## Purpose
+
+Verify that development begins from a clean Ubuntu server before installing dependencies or creating the GREATER ecosystem.
+
+## Expected Initial State
+
+- Ubuntu installed
+- Docker not installed
+- Docker Compose not installed
+- No GREATER containers
+- No GREATER databases
+- No GREATER deployment files
+
+## Validation Commands
+
+```bash
+lsb_release -a
+docker --version
+docker compose version
+docker ps -a
 backup/
 logs/
