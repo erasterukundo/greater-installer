@@ -104,6 +104,12 @@ Expected result:
 
 ## Example Output
 
+### Current User Home Directory
+
+```text
+/home/greaterproject
+```
+
 ### Existing Container Before Removal
 
 ```text
@@ -143,15 +149,13 @@ The server should satisfy all of the following conditions:
 
 ## Validation Procedure
 
-The following validations were performed:
-
 ### Docker Validation
 
 ```bash
 docker --version
 ```
 
-Result:
+Expected result:
 
 ```text
 -bash: /usr/bin/docker: No such file or directory
@@ -163,9 +167,11 @@ Result:
 docker ps -a
 ```
 
-Result:
+Expected result:
 
-No active Docker installation.
+```text
+docker: command not found
+```
 
 ### Server Validation
 
@@ -173,13 +179,11 @@ No active Docker installation.
 pwd
 ```
 
-Result:
+Expected result:
 
 ```text
-/home/greaterbk
+/home/greaterproject
 ```
-
-Server successfully accessible and ready for installer development.
 
 ---
 
@@ -200,7 +204,7 @@ This is normal behavior and does not prevent package removal.
 
 ### Docker Command Still Exists After Removal
 
-Solution:
+Verify location:
 
 ```bash
 which docker
@@ -209,7 +213,7 @@ which docker
 If Docker still exists:
 
 ```bash
-sudo apt purge docker-ce docker-ce-cli containerd.io
+sudo apt purge -y docker-ce docker-ce-cli containerd.io
 ```
 
 ---
@@ -228,9 +232,15 @@ sudo apt purge docker-ce docker-ce-cli containerd.io
 
 ## Conclusion
 
-The server was successfully cleaned and validated.
+The Ubuntu server was successfully cleaned and validated.
 
 Docker, Docker Compose, and previous test containers were removed.
 
-The Ubuntu 24.04 server is now ready for Step 01 – Ubuntu Preparation.
+The server is now ready for:
 
+* Step 01 – Ubuntu Preparation
+* Docker Installation
+* GREATER Installer Development
+* Module 01 – Prerequisites Development
+
+This clean environment provides a reproducible starting point for validating the GREATER Installer on a fresh Ubuntu 24.04 server.
