@@ -145,3 +145,56 @@ Every implementation activity performed during the development of the GREATER In
 The objective is to ensure that every module can be reproduced, validated, maintained, and understood by future developers and institutions adopting the GREATER ecosystem.
 
 The following template shall be used for all implementation activities.
+
+Step 1 – Ubuntu Preparation
+
+Clean Server
+        ↓
+Ubuntu Preparation
+        ↓
+Docker Installation
+        ↓
+Module 01 Prerequisites
+        ↓
+Module 02 Questionnaire
+        ↓
+Module 03 Generate Config
+        ↓
+Module 04 Deploy Containers
+
+# Step 1 – Ubuntu Preparation
+
+## Purpose
+
+Prepare a clean Ubuntu server by installing the basic utilities required for development, testing, troubleshooting, and source code management before installing Docker and GREATER ecosystem components.
+
+## Why This Step is Required
+
+Several utilities required during installer development are not always available on a fresh Ubuntu installation. Installing them ensures a consistent and reproducible development environment.
+
+## Input Files
+
+None.
+
+## Output Files
+
+None.
+
+## Commands Used
+
+```bash
+lsb_release -a
+sudo apt update
+sudo apt upgrade -y
+
+sudo apt install -y \
+tree \
+curl \
+wget \
+git \
+nano \
+vim \
+unzip \
+zip \
+htop \
+net-tools
