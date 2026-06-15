@@ -103,3 +103,37 @@ ls
 docker --version
 docker compose version
 docker ps -a
+
+## GREATER Installer Vision
+
+The GREATER Installer is an automated deployment framework designed to reproduce the complete GREATER Ecosystem on a clean Ubuntu server with minimal manual intervention.
+
+The installer automatically deploys and configures all core ecosystem components including:
+
+- Multi-Living-Lab management
+- Role-Based Access Control (RBAC)
+- JWT Authentication
+- Dockerized services
+- Node-RED workspaces
+- MQTT communication
+- Shared MySQL database
+- NGINX reverse proxy
+- Monitoring and observability services
+- Automated configuration generation
+- Replicable infrastructure deployment
+
+The objective is to enable universities, research institutions, and Living Labs to deploy the GREATER Ecosystem quickly, consistently, and reproducibly using open-source technologies.
+
+GREATER Installer Development Guide
+
+1. GREATER Installer Vision
+2. Development Workflow
+3. Modules
+4. Repository Structure
+5. Documentation Standard
+6. Step 0 – Clean Server Validation
+7. Step 1 – Ubuntu Preparation
+8. Step 2 – Docker Installation
+9. Step 3 – Module 01 Development
+10. Step 4 – Module 02 Development
+...
