@@ -108,26 +108,79 @@ Developers may create a dedicated workspace for development activities.
 
 The workspace name and location are entirely user-defined.
 
-Example:
+### Recommended Approach
+
+Create the workspace inside the current user's home directory:
 
 ```bash
-mkdir -p my-workspace
+cd ~
 
-cd my-workspace
+mkdir -p greater
+
+cd greater
 
 pwd
 ```
 
-Possible locations:
+Example output:
 
 ```text
-/home/admin/my-workspace
-/home/user/installer
+/home/username/greater
+```
+
+where:
+
+```text
+username
+```
+
+is the Linux account used for development.
+
+### Alternative Locations
+
+Developers may choose other locations according to institutional policies:
+
+```text
+/home/username/project
 /opt/greater
 /srv/greater
 ```
 
-The GREATER Installer does not require any specific workspace name.
+### Important Note
+
+Creating directories directly inside:
+
+```text
+/home
+```
+
+normally requires elevated privileges.
+
+For example:
+
+```bash
+cd /home
+
+mkdir greater
+```
+
+may return:
+
+```text
+mkdir: cannot create directory 'greater': Permission denied
+```
+
+because `/home` is owned by the root user.
+
+For this reason, the recommended approach is:
+
+```bash
+cd ~
+
+mkdir -p greater
+```
+
+which creates the workspace inside the current user's home directory and does not require administrative privileges.
 
 ---
 
@@ -155,7 +208,7 @@ curl 8.x.x
 tree v2.x.x
 ```
 
-If an optional workspace was created:
+If a development workspace was created:
 
 ```bash
 pwd
@@ -164,13 +217,13 @@ pwd
 Expected output:
 
 ```text
-<user-selected-working-directory>
+/home/username/greater
 ```
 
 Example:
 
 ```text
-/home/admin/my-workspace
+/home/greaterbk/greater
 ```
 
 ---
@@ -203,6 +256,20 @@ Expected:
 /usr/bin/git
 /usr/bin/curl
 /usr/bin/tree
+```
+
+Verify workspace:
+
+```bash
+cd ~/greater
+
+pwd
+```
+
+Expected:
+
+```text
+/home/username/greater
 ```
 
 ---
@@ -292,6 +359,14 @@ which git
 which curl
 
 which tree
+
+cd ~
+
+mkdir -p greater
+
+cd greater
+
+pwd
 ```
 
 ---
@@ -320,4 +395,4 @@ The system is now ready for:
 * GREATER Installer Development
 * Module 01 – Prerequisites Development
 
-Any optional development workspace may be created according to local institutional requirements and administrator preferences.
+Any development workspace may be created according to local institutional requirements and administrator preferences.
