@@ -2,21 +2,21 @@
 
 ## Purpose
 
-Verify that installer development starts from a clean Ubuntu server before installing Docker, Docker Compose, or any GREATER ecosystem components.
+Verify that development starts from a clean Ubuntu server before installing Docker, Docker Compose, or any GREATER ecosystem components.
 
-This step establishes a reproducible baseline environment for all future installer testing and validation activities.
+This step establishes a reproducible baseline environment for all future installer development, testing, validation, and deployment activities.
 
 ---
 
 ## Why This Step Is Required
 
-A clean environment guarantees that installer validation is reproducible and that no previous configurations affect deployment results.
+A clean environment ensures that installer validation is reproducible and that no previous software installations, Docker containers, or configuration files interfere with testing results.
 
-Without this verification:
+Without this validation:
 
-* Existing Docker installations may interfere with testing.
+* Existing Docker installations may affect deployment behavior.
 * Existing containers may occupy required ports.
-* Previous GREATER installations may affect validation results.
+* Previous GREATER deployments may influence test results.
 * Documentation may become difficult to reproduce on another server.
 
 ---
@@ -35,13 +35,13 @@ None.
 
 ## Commands Used
 
-### Verify Current Location
+### Verify Current User Location
 
 ```bash
 pwd
 ```
 
-### List Existing Files and Folders
+### List Existing Files and Directories
 
 ```bash
 ls
@@ -53,7 +53,7 @@ ls
 docker --version
 ```
 
-### Check Docker Compose
+### Check Docker Compose Installation
 
 ```bash
 docker compose version
@@ -71,7 +71,7 @@ docker ps -a
 sudo systemctl stop docker
 ```
 
-### Remove Docker Packages
+### Remove Docker Components
 
 ```bash
 sudo apt remove -y \
@@ -94,23 +94,29 @@ sudo apt autoremove -y
 docker --version
 ```
 
-Expected result:
-
-```text
--bash: /usr/bin/docker: No such file or directory
-```
-
 ---
 
-## Example Output
+## Example Outputs
 
-### Current User Home Directory
+### Current Working Directory
 
-```text
-/home/greaterproject
+```bash
+pwd
 ```
 
-### Existing Container Before Removal
+Example output:
+
+```text
+/home/<username>
+```
+
+### Existing Containers Before Removal
+
+```bash
+docker ps -a
+```
+
+Example output:
 
 ```text
 CONTAINER ID   IMAGE         STATUS
@@ -128,6 +134,18 @@ Removing docker-compose-plugin...
 
 ### Final Verification
 
+```bash
+docker --version
+```
+
+Expected output:
+
+```text
+Command 'docker' not found
+```
+
+or
+
 ```text
 -bash: /usr/bin/docker: No such file or directory
 ```
@@ -136,20 +154,22 @@ Removing docker-compose-plugin...
 
 ## Expected Results
 
-The server should satisfy all of the following conditions:
+After completing this step:
 
-* Docker removed
-* Docker Compose removed
-* No running containers
-* No GREATER containers
-* No previous deployment dependencies
-* Clean Ubuntu environment available
+* Docker is not installed.
+* Docker Compose is not installed.
+* No GREATER containers exist.
+* No active Docker services exist.
+* No previous deployment artifacts affect testing.
+* Ubuntu is ready for installer development.
 
 ---
 
 ## Validation Procedure
 
-### Docker Validation
+### Validate Docker Removal
+
+Execute:
 
 ```bash
 docker --version
@@ -158,22 +178,26 @@ docker --version
 Expected result:
 
 ```text
--bash: /usr/bin/docker: No such file or directory
+Command 'docker' not found
 ```
 
-### Container Validation
+### Validate Docker Compose Removal
+
+Execute:
 
 ```bash
-docker ps -a
+docker compose version
 ```
 
 Expected result:
 
 ```text
-docker: command not found
+Command 'docker' not found
 ```
 
-### Server Validation
+### Validate Server Accessibility
+
+Execute:
 
 ```bash
 pwd
@@ -182,14 +206,28 @@ pwd
 Expected result:
 
 ```text
-/home/greaterproject
+/home/<username>
+```
+
+### Validate User Permissions
+
+Execute:
+
+```bash
+whoami
+```
+
+Expected result:
+
+```text
+<username>
 ```
 
 ---
 
 ## Troubleshooting Notes
 
-### Docker Service Refused to Stop
+### Docker Service Refuses to Stop
 
 Observed message:
 
@@ -204,17 +242,28 @@ This is normal behavior and does not prevent package removal.
 
 ### Docker Command Still Exists After Removal
 
-Verify location:
+Verify Docker location:
 
 ```bash
 which docker
 ```
 
-If Docker still exists:
+If Docker is still present, remove all remaining packages:
 
 ```bash
 sudo apt purge -y docker-ce docker-ce-cli containerd.io
+sudo apt autoremove -y
 ```
+
+### Package Removal Fails
+
+Refresh package information:
+
+```bash
+sudo apt update
+```
+
+Then repeat the removal commands.
 
 ---
 
@@ -238,9 +287,21 @@ Docker, Docker Compose, and previous test containers were removed.
 
 The server is now ready for:
 
-* Step 01 – Ubuntu Preparation
-* Docker Installation
-* GREATER Installer Development
-* Module 01 – Prerequisites Development
+1. Step 01 – Ubuntu Preparation
+2. Docker Installation
+3. GREATER Installer Development
+4. Module 01 – Prerequisites Development
 
-This clean environment provides a reproducible starting point for validating the GREATER Installer on a fresh Ubuntu 24.04 server.
+This clean environment provides a reproducible starting point for validating the GREATER Installer on a fresh Ubuntu server.
+
+---
+
+## Next Step
+
+Proceed to:
+
+```text
+docs/STEP_01_UBUNTU_PREPARATION.md
+```
+
+to prepare the Ubuntu environment and install the basic utilities required for GREATER Installer development.
