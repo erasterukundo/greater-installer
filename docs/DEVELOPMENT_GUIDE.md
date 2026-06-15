@@ -137,3 +137,11 @@ GREATER Installer Development Guide
 9. Step 3 – Module 01 Development
 10. Step 4 – Module 02 Development
 ...
+
+## Documentation Standard
+
+Every implementation activity performed during the development of the GREATER Installer must follow a consistent documentation structure.
+
+The objective is to ensure that every module can be reproduced, validated, maintained, and understood by future developers and institutions adopting the GREATER ecosystem.
+
+The following template shall be used for all implementation activities.
