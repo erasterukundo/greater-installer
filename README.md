@@ -77,3 +77,58 @@ docker compose version
 docker ps -a
 backup/
 logs/
+
+# Quick Start
+
+The GREATER Installer is designed to be executed module by module. Before deploying any GREATER services, the server must first pass the prerequisite validation process.
+
+## Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/erasterukundo/greater-installer.git
+```
+
+## Step 2: Enter the Project Directory
+
+```bash
+cd greater-installer
+```
+
+## Step 3: Make Module 01 Executable
+
+```bash
+chmod +x installer/01-prerequisites.sh
+```
+
+## Step 4: Run Module 01
+
+```bash
+./installer/01-prerequisites.sh
+```
+
+Alternatively:
+
+```bash
+bash installer/01-prerequisites.sh
+```
+
+## Expected Result
+
+The installer validates:
+
+* Ubuntu version
+* CPU resources
+* RAM
+* Available disk space
+* Docker installation
+* Docker Compose installation
+* Network ports
+* Docker functionality
+
+A validation report is generated in:
+
+```text
+logs/prerequisites_report.txt
+```
+
+If all checks pass, the server is ready for the next installation phase.
